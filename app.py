@@ -74,9 +74,12 @@ async def generate_content_brief(data: KeywordData):
     logger.info(f"Data scraped for all sites for {data.keyword}")
 
     # Prepare message for OpenAI
-    detailed_message = f"Consider the most relevant information, avoid fluff, and provide a concise yet comprehensive brief about the intent & content using the top ranking sites, focusing particularly on the keyword: '{data.keyword}': \n\n"
+    detailed_message = f"You are a seasoned SEO expert and content strategist. Your task is to analyze the following consolidated data from top-ranking websites and provide a hyper-optimized content brief focused around the keyword '{keyword}'. This brief should be actionable and clear for content writers, highlighting key points and takeaways.\n\n"
     for tag, texts in consolidated_data.items():
-        detailed_message += f"{tag.upper()}: {' '.join(texts[:5])}\n\n"
+        detailed_message += f"{tag.upper()}: {' '.join(texts[:10])}\n\n"
+
+    # Additional instructions for clarity and conciseness
+    detailed_message += f"\nConsider the most relevant information, avoid fluff, and provide a concise yet comprehensive brief about the intent & content using the top ranking sites, focusing particularly on the keyword '{keyword}'. Generate an optimized content brief with content idea thesis, specifying whether it's a content piece, a calculator, a landing page, or other. Format the brief in Markdown."
 
     # Call OpenAI API for content brief
     try:
