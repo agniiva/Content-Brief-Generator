@@ -1,0 +1,7 @@
+requests
+beautifulsoup4
+openai==0.28
+fastapi
+uvicorn
+pydantic
+python-dotenv
